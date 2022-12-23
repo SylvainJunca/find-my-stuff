@@ -9,7 +9,7 @@ Actual version:
 
 Scans devices around and displays a list showing their name (id it exists) and the signal strength. 
 
-![IMG_3891](https://user-images.githubusercontent.com/7644339/209409973-24a8317e-d016-49f1-acc1-f35f2ef2f9da.jpg)
+![IMG_3891 2](https://user-images.githubusercontent.com/7644339/209410098-10882d3e-78e8-49a3-a8c9-3546f89cdb9e.jpg)
 
 Left TO DO:
 
