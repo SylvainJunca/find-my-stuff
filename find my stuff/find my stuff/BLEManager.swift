@@ -9,9 +9,10 @@ import Foundation
 import CoreBluetooth
 
 struct Device: Identifiable {
-    let id: Int
+    let id: NSUUID
     let name: String!
     var rssi: NSNumber
+    let peripheral: CBPeripheral
     let info: [String: Any]
 }
 
@@ -39,24 +40,28 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         var deviceName : String!
+        let id = peripheral.identifier
         if let name = peripheral.name {
             deviceName = name
         } else {
             deviceName = "Unknown"
         }
         
-//        if(devices.firstIndex(where: { Device in
-//            if Device.name == deviceName {
-//
-//            }
-//        }))
-        let newDevice = Device(id: devices.count, name:deviceName, rssi: RSSI, info: advertisementData)
-        devices.append(newDevice)
+        if let index = (devices.firstIndex(where: { $0.id as UUID == id })) {
+            var refreshDevice = devices[index]
+            refreshDevice.rssi = RSSI
+        } else {
+            let newDevice = Device(id: id as NSUUID, name:deviceName, rssi: RSSI, peripheral: peripheral, info: advertisementData)
+            devices.append(newDevice)
+        }
         
+        devices = devices.sorted(by: { device1, device2 in
+            return device1.rssi as! Double > device2.rssi as! Double
+        })
     }
     
     func startScanning(){
-        myCentral.scanForPeripherals(withServices: nil, options: nil)
+        myCentral.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
     }
     func stopScanning() {
         myCentral.stopScan()

@@ -11,11 +11,12 @@ import CoreData
 struct ContentView: View {
     @ObservedObject var bleManager = BLEManager()
     var body: some View {
-            VStack (spacing: 10) {
+        VStack (spacing: 10) {
                 if !bleManager.bluetoothOn {
                     Text("You need to turn the bluetooth on")
                         .foregroundColor(.red)
                 }
+            Spacer()
                 List(bleManager.devices) { device in
                     HStack {
                         Text(device.name)
@@ -31,12 +32,13 @@ struct ContentView: View {
                     }) {
                         Text("Start Scanning")
                     }
+                    .padding(0.0)
                     Button(action: {
                         print("Stop Scanning")
                     }) {
                         Text("Stop Scanning")
                     }
-                }.padding()
+                }.padding().buttonStyle(.bordered)
                 Spacer()
             }
         }
