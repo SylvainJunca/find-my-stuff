@@ -14,8 +14,15 @@ struct DeviceDetailsView: View {
     var body: some View {
         VStack {
             Text(device.name)
-//          Text(device.peripheral.identifier)
-//          Text(device.rssi)
+            Text(device.timestamp, style: .relative)
+            Text(String(describing: device.rssi))
+//            List {
+//                ForEach(device.advertisementData) { advertisement in
+//                    Text(String(describing: advertisement))
+//                                    }
+//            }
+            
+           
         }.navigationBarTitle(Text (device.name), displayMode: .inline)
 
     }

@@ -21,35 +21,39 @@ struct ContentView: View {
                     Text("Scanning...")
                         .foregroundColor(.blue)
                         .animation(.spring(blendDuration: 0))
+                } else {
+                    Text(" ")
                 }
-                Spacer()
-                
                 List(bleManager.devices, id: \.id) { device in
                     NavigationLink(destination: DeviceDetailsView(device: device)) {
                         HStack {
                             Text(device.name)
                             Text(String(describing: device.rssi))
+                            Text(device.timestamp, style: .relative)
                         }
                     }
-                }.frame(height: 600)
+                }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 Spacer()
                 HStack (spacing: 10) {
-                    Button(action: {
-                        self.bleManager.startScanning()
-                    }) {
-                        Text("Start Scanning").font(.headline)
-                    }.tint(.green)
-                        .buttonStyle(.borderedProminent)
-                        .buttonBorderShape (.capsule)
-                        .controlSize (.large)
-                    Button(action: {
-                        self.bleManager.stopScanning()
-                    }) {
-                        Text("Stop Scanning").font(.headline)
-                    }.tint(.red)
-                        .buttonStyle(.borderedProminent)
-                        .buttonBorderShape (.capsule)
-                        .controlSize (.large)
+                    if (bleManager.isScanning) {
+                        Button(action: {
+                            self.bleManager.stopScanning()
+                        }) {
+                            Text("Stop Scanning").font(.headline)
+                        }.tint(.red)
+                            .buttonStyle(.borderedProminent)
+                            .buttonBorderShape (.capsule)
+                            .controlSize (.large)
+                    } else {
+                        Button(action: {
+                            self.bleManager.startScanning()
+                        }) {
+                            Text("Start Scanning").font(.headline)
+                        }.tint(.green)
+                            .buttonStyle(.borderedProminent)
+                            .buttonBorderShape (.capsule)
+                            .controlSize (.large)
+                    }
                 }.buttonStyle(.bordered)
                 Spacer()
             }
