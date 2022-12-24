@@ -11,38 +11,51 @@ import CoreData
 struct ContentView: View {
     @ObservedObject var bleManager = BLEManager()
     var body: some View {
-        VStack (spacing: 10) {
+        NavigationView {
+            VStack (spacing: 10) {
                 if !bleManager.bluetoothOn {
                     Text("You need to turn the bluetooth on")
                         .foregroundColor(.red)
                 }
-            Spacer()
-                List(bleManager.devices) { device in
-                    HStack {
-                        Text(device.name)
-                        Text(String(describing: device.rssi))
+                if bleManager.isScanning {
+                    Text("Scanning...")
+                        .foregroundColor(.blue)
+                        .animation(.spring(blendDuration: 0))
+                }
+                Spacer()
+                
+                List(bleManager.devices, id: \.id) { device in
+                    NavigationLink(destination: DeviceDetailsView(device: device)) {
+                        HStack {
+                            Text(device.name)
+                            Text(String(describing: device.rssi))
+                        }
                     }
                 }.frame(height: 600)
-              
-                
                 Spacer()
                 HStack (spacing: 10) {
                     Button(action: {
                         self.bleManager.startScanning()
                     }) {
-                        Text("Start Scanning")
-                    }
-                    .padding(0.0)
+                        Text("Start Scanning").font(.headline)
+                    }.tint(.green)
+                        .buttonStyle(.borderedProminent)
+                        .buttonBorderShape (.capsule)
+                        .controlSize (.large)
                     Button(action: {
-                        print("Stop Scanning")
+                        self.bleManager.stopScanning()
                     }) {
-                        Text("Stop Scanning")
-                    }
-                }.padding().buttonStyle(.bordered)
+                        Text("Stop Scanning").font(.headline)
+                    }.tint(.red)
+                        .buttonStyle(.borderedProminent)
+                        .buttonBorderShape (.capsule)
+                        .controlSize (.large)
+                }.buttonStyle(.bordered)
                 Spacer()
             }
         }
     }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

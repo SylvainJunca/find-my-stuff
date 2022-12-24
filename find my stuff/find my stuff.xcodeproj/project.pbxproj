@@ -17,6 +17,7 @@
 		11F162D42955606F00BA6F81 /* find_my_stuffUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F162D32955606F00BA6F81 /* find_my_stuffUITests.swift */; };
 		11F162D62955606F00BA6F81 /* find_my_stuffUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F162D52955606F00BA6F81 /* find_my_stuffUITestsLaunchTests.swift */; };
 		11F162E3295563C300BA6F81 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F162E2295563C300BA6F81 /* BLEManager.swift */; };
+		11F162E529566DB600BA6F81 /* DeviceDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F162E429566DB600BA6F81 /* DeviceDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		11F162D32955606F00BA6F81 /* find_my_stuffUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = find_my_stuffUITests.swift; sourceTree = "<group>"; };
 		11F162D52955606F00BA6F81 /* find_my_stuffUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = find_my_stuffUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		11F162E2295563C300BA6F81 /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
+		11F162E429566DB600BA6F81 /* DeviceDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		11F162A72955606B00BA6F81 = {
 			isa = PBXGroup;
 			children = (
+				11F162E429566DB600BA6F81 /* DeviceDetailsView.swift */,
 				11F162B22955606B00BA6F81 /* find my stuff */,
 				11F162C82955606F00BA6F81 /* find my stuffTests */,
 				11F162D22955606F00BA6F81 /* find my stuffUITests */,
@@ -271,6 +274,7 @@
 				11F162E3295563C300BA6F81 /* BLEManager.swift in Sources */,
 				11F162B42955606B00BA6F81 /* find_my_stuffApp.swift in Sources */,
 				11F162C02955606E00BA6F81 /* find_my_stuff.xcdatamodeld in Sources */,
+				11F162E529566DB600BA6F81 /* DeviceDetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
