@@ -32,7 +32,7 @@ struct ContentView: View {
                             Text(device.timestamp, style: .relative)
                         }
                     }
-                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                }.frame(maxWidth: .infinity, maxHeight: .infinity).animation(.default)
                 Spacer()
                 HStack (spacing: 10) {
                     if (bleManager.isScanning) {

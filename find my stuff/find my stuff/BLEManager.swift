@@ -57,6 +57,8 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
             let id = peripheral.identifier
             if let name = peripheral.name {
                 deviceName = name
+            } else if let otherName = advertisementData[CBAdvertisementDataLocalNameKey]{
+                deviceName = otherName as! String
             } else {
                 deviceName = "Unknown"
             }
@@ -81,7 +83,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         myCentral.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
         isScanning = myCentral.isScanning
         
-        var _ = Timer.scheduledTimer(timeInterval: 2.0,
+        var _ = Timer.scheduledTimer(timeInterval: 5.0,
           target: self,
           selector: #selector(reorderList),
           userInfo: nil,
